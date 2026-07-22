@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 type ProductoDetalle = {
@@ -201,10 +201,11 @@ const PRODUCTOS_MOCK: ProductoDetalle[] = [
 
 export default function ProductPage() {
   const params = useParams();
+  const router = useRouter();
   const producto = PRODUCTOS_MOCK.find(p => p.id === Number(params.id));
 
   const [imagenActiva, setImagenActiva] = useState(0);
-  const [tallaSeleccionada, setTallaSeleccionada] = useState('');
+  const [tallaSeleccionada, setTallaSeleccionada] = useState(producto?.tallas[0] || '');
 
   if (!producto) {
     return (
@@ -214,6 +215,26 @@ export default function ProductPage() {
       </div>
     );
   }
+
+  const agregarAlCarrito = () => {
+    if (!tallaSeleccionada) return;
+
+    const carritoGuardado = JSON.parse(localStorage.getItem('cova_cart') || '[]');
+    
+    const nuevoItem = {
+      id: producto.id,
+      nombre: producto.nombre,
+      precio: producto.precio,
+      imagen: producto.imagenes[0],
+      talla: tallaSeleccionada,
+      cantidad: 1
+    };
+
+    carritoGuardado.push(nuevoItem);
+    localStorage.setItem('cova_cart', JSON.stringify(carritoGuardado));
+
+    router.push('/cart');
+  };
 
   return (
     <div className="min-h-screen bg-black text-white py-20 px-8">
@@ -291,14 +312,10 @@ export default function ProductPage() {
             </div>
 
             <button 
-              className={`w-full py-4 tracking-widest uppercase transition-all duration-300 ${
-                tallaSeleccionada 
-                  ? 'bg-white text-black hover:bg-zinc-200 font-bold' 
-                  : 'bg-zinc-800 text-zinc-500 cursor-not-allowed'
-              }`}
-              disabled={!tallaSeleccionada}
+              onClick={agregarAlCarrito}
+              className="w-full py-4 tracking-widest uppercase bg-white text-black hover:bg-zinc-200 font-bold cursor-pointer transition-all duration-300"
             >
-              {tallaSeleccionada ? 'Añadir al carrito' : 'Selecciona una talla'}
+              Añadir al carrito
             </button>
 
             <div className="mt-10 border-t border-zinc-800 pt-6 flex flex-col gap-3 text-sm text-zinc-500 tracking-wider">
