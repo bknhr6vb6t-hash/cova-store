@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useCartStore } from "@/store/cart-store";
 
 type ProductoDetalle = {
   id: number;
@@ -202,6 +203,9 @@ const PRODUCTOS_MOCK: ProductoDetalle[] = [
 export default function ProductPage() {
   const params = useParams();
   const router = useRouter();
+  
+  const addToCart = useCartStore((state) => state.addToCart);
+
   const producto = PRODUCTOS_MOCK.find(p => p.id === Number(params.id));
 
   const [imagenActiva, setImagenActiva] = useState(0);
@@ -211,7 +215,7 @@ export default function ProductPage() {
     return (
       <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center">
         <h1 className="text-2xl tracking-widest mb-4">PRODUCTO NO ENCONTRADO</h1>
-        <Link href="/" className="border-b border-white pb-1 hover:text-gray-400">VOLVER A LA TIENDA</Link>
+        <Link href="/" className="border-b border-white pb-1 hover:text-gray-400 hover:border-gray-400 transition-colors">VOLVER A LA TIENDA</Link>
       </div>
     );
   }
@@ -219,16 +223,18 @@ export default function ProductPage() {
   const agregarAlCarrito = () => {
     if (!tallaSeleccionada) return;
 
-    // Aquí usamos la forma estándar limpia para guardar en el carrito
-    const carritoActual = JSON.parse(localStorage.getItem('cart') || '[]');
-    
-    carritoActual.push({
-      ...producto,
-      tallaSeleccionada,
-      cantidad: 1
-    });
+    // Convertimos el precio a número puro (ej: 89900)
+    const precioNumerico = parseInt(producto.precio.replace(/[^0-9]/g, ''));
 
-    localStorage.setItem('cart', JSON.stringify(carritoActual));
+    const itemParaCarrito = {
+      id: producto.id.toString(), // Convertimos a string obligatoriamente
+      name: producto.nombre,
+      price: precioNumerico,
+      image: producto.imagenes[0],
+      size: tallaSeleccionada
+    };
+
+    addToCart(itemParaCarrito);
     router.push('/cart');
   };
 
@@ -241,12 +247,8 @@ export default function ProductPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div className="flex flex-col gap-4">
-            <div className="bg-zinc-900 aspect-[3/4] w-full border border-zinc-800 overflow-hidden">
-              <img 
-                src={producto.imagenes[imagenActiva]} 
-                alt={producto.nombre} 
-                className="w-full h-full object-cover"
-              />
+            <div className="bg-zinc-900 aspect-[3/4] w-full border border-zinc-800 overflow-hidden group">
+              <img src={producto.imagenes[imagenActiva]} alt={producto.nombre} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-125 cursor-crosshair" />
             </div>
             
             <div className="grid grid-cols-4 gap-4">
@@ -254,34 +256,31 @@ export default function ProductPage() {
                 <button 
                   key={index} 
                   onClick={() => setImagenActiva(index)}
-                  className={`aspect-[3/4] border overflow-hidden ${imagenActiva === index ? 'border-white' : 'border-zinc-800 opacity-50'}`}
+                  className={`aspect-[3/4] border overflow-hidden transition-all group ${imagenActiva === index ? 'border-white opacity-100' : 'border-zinc-800 opacity-50 hover:opacity-100'}`}
                 >
-                  <img src={img} alt="" className="w-full h-full object-cover" />
+                  <img src={img} alt={`Vista ${index + 1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                 </button>
               ))}
             </div>
           </div>
 
           <div className="flex flex-col justify-center">
-            {producto.marca && (
-              <span className="text-sm text-zinc-500 tracking-widest uppercase mb-2">{producto.marca}</span>
-            )}
-            
+            {producto.marca && <span className="text-sm text-zinc-500 tracking-widest uppercase mb-2">{producto.marca}</span>}
             <h1 className="text-4xl font-bold tracking-widest mb-2">{producto.nombre}</h1>
             <p className="text-2xl text-zinc-300 font-light mb-6">{producto.precio}</p>
-            
             <p className="text-zinc-400 mb-8 leading-relaxed">{producto.descripcion}</p>
 
             <div className="mb-8">
-              <span className="text-sm tracking-widest text-zinc-300 uppercase block mb-4">Talla</span>
+              <div className="flex justify-between items-center mb-4">
+                <span className="text-sm tracking-widest text-zinc-300 uppercase">Talla</span>
+                <button className="text-xs text-zinc-500 underline hover:text-white">Guía de tallas</button>
+              </div>
               <div className="flex flex-wrap gap-3">
                 {producto.tallas.map((talla) => (
                   <button
                     key={talla}
                     onClick={() => setTallaSeleccionada(talla)}
-                    className={`w-12 h-12 flex items-center justify-center border ${
-                      tallaSeleccionada === talla ? 'bg-white text-black border-white font-bold' : 'border-zinc-700 text-zinc-300'
-                    }`}
+                    className={`w-12 h-12 flex items-center justify-center border transition-all ${tallaSeleccionada === talla ? 'bg-white text-black border-white font-bold' : 'border-zinc-700 text-zinc-300 hover:border-white'}`}
                   >
                     {talla}
                   </button>
@@ -291,7 +290,7 @@ export default function ProductPage() {
 
             <button 
               onClick={agregarAlCarrito}
-              className="w-full py-4 tracking-widest uppercase bg-white text-black hover:bg-zinc-200 font-bold transition-all"
+              className="w-full py-4 tracking-widest uppercase bg-white text-black hover:bg-zinc-200 font-bold cursor-pointer transition-all duration-300"
             >
               Añadir al carrito
             </button>
