@@ -19,7 +19,7 @@ const PRODUCTOS_MOCK: ProductoDetalle[] = [
   { 
     id: 1, 
     nombre: "Distressed Urban Jean", 
-    precio: "$89.900", 
+    precio: "$69.900", 
     categoria: "Mujer",
     descripcion: "Jean de tiro alto con detalles desgastados y rotos (distressed). Silueta urbana perfecta para combinar con sneakers. Lavado vintage exclusivo.",
     imagenes: [
@@ -34,7 +34,7 @@ const PRODUCTOS_MOCK: ProductoDetalle[] = [
   { 
     id: 2, 
     nombre: "Wide Leg Dark Denim", 
-    precio: "$95.900", 
+    precio: "$69.900", 
     categoria: "Mujer",
     descripcion: "Jean silueta Wide Leg en lavado azul oscuro profundo. Confeccionado con denim de alto rendimiento (High Performance), costuras en contraste dorado y un fit auténtico que alarga la figura. Un clásico premium indispensable en tu armario.",
     imagenes: [
@@ -48,7 +48,7 @@ const PRODUCTOS_MOCK: ProductoDetalle[] = [
   { 
     id: 3, 
     nombre: "Wide Leg Premium Blue", 
-    precio: "$92.900", 
+    precio: "$69.900", 
     categoria: "Mujer",
     descripcion: "Jean silueta Wide Leg en lavado azul clásico. Pertenece a la línea Premium Denim, destacando por sus detalles únicos como costuras decorativas en los bolsillos traseros, herrajes de alta calidad y parche exclusivo de cuero. ÚLTIMA UNIDAD DISPONIBLE.",
     imagenes: [
@@ -62,7 +62,7 @@ const PRODUCTOS_MOCK: ProductoDetalle[] = [
   { 
     id: 4, 
     nombre: "Wide Leg Authentic", 
-    precio: "$96.900", 
+    precio: "$69.900", 
     categoria: "Mujer",
     descripcion: "Jean Wide Leg de la línea Authentic Design. Cuenta con un lavado azul medio clásico, costuras marcadas y parche de cuero distintivo. Excelente ajuste y comodidad para tu día a día.",
     imagenes: [
@@ -76,7 +76,7 @@ const PRODUCTOS_MOCK: ProductoDetalle[] = [
   { 
     id: 5, 
     nombre: "High Performance Dark Jean", 
-    precio: "$98.900", 
+    precio: "$59.900", 
     categoria: "Mujer",
     descripcion: "Jean de la exclusiva High Performance Collection de Michell Villamizar. Elaborado con algodón seleccionado de peso especial y costuras de alta resistencia. Diseño impecable en lavado oscuro con herrajes metalizados y parche de cuero genuino.",
     imagenes: [
@@ -90,7 +90,7 @@ const PRODUCTOS_MOCK: ProductoDetalle[] = [
   { 
     id: 6, 
     nombre: "High Performance Light Blue", 
-    precio: "$98.900", 
+    precio: "$59.900", 
     categoria: "Mujer",
     descripcion: "Jean en tono azul claro de la colección High Performance de Michell Villamizar. Diseñado con acabados de desgaste sutiles, costuras reforzadas de alta durabilidad y un calce perfecto en talla 8.",
     imagenes: [
@@ -104,7 +104,7 @@ const PRODUCTOS_MOCK: ProductoDetalle[] = [
   { 
     id: 7, 
     nombre: "Classic Dark Skinny Jean", 
-    precio: "$89.900", 
+    precio: "$59.900", 
     categoria: "Mujer",
     descripcion: "Jean clásico de la marca DHARA en lavado oscuro impecable. Diseñado para ofrecer máxima comodidad, excelente horma y gran adaptabilidad gracias a su corte estilizado.",
     imagenes: [
@@ -118,7 +118,7 @@ const PRODUCTOS_MOCK: ProductoDetalle[] = [
   { 
     id: 8, 
     nombre: "Gold Denim Skinny Fit", 
-    precio: "$98.900", 
+    precio: "$59.900", 
     categoria: "Mujer",
     descripcion: "Jean Skinny de la exclusiva High Performance Collection de Michell Villamizar. Confeccionado en denim gold de alta elasticidad que realza la silueta, con herrajes metálicos personalizados y un calce estilizado en talla 8.",
     imagenes: [
@@ -132,7 +132,7 @@ const PRODUCTOS_MOCK: ProductoDetalle[] = [
   { 
     id: 9, 
     nombre: "Tailored Pink Vest", 
-    precio: "$79.900", 
+    precio: "$44.900", 
     categoria: "Mujer",
     descripcion: "Elegante chaleco sastre en tono rosado de la marca STARA. Diseño con escote en V, botonadura frontal delicada y cintas ajustables en la parte trasera para un calce sofisticado y entallado en talla S.",
     imagenes: [
@@ -146,7 +146,7 @@ const PRODUCTOS_MOCK: ProductoDetalle[] = [
   { 
     id: 10, 
     nombre: "Beige Halter Linen Blouse", 
-    precio: "$74.900", 
+    precio: "$44.900", 
     categoria: "Mujer",
     descripcion: "Frescamente sofisticada blusa estilo halter en tono beige de la marca STARA. Confeccionada con textura ligera, cuello alto abotonado con detalles metálicos y panel posterior elástico para un ajuste cómodo y favorecedor en talla S.",
     imagenes: [
@@ -160,7 +160,7 @@ const PRODUCTOS_MOCK: ProductoDetalle[] = [
   { 
     id: 11, 
     nombre: "Shimmer V-Neck Body", 
-    precio: "$79.900", 
+    precio: "$49.900", 
     categoria: "Mujer",
     descripcion: "Sensacional body de textura brillante y acabado metalizado de la marca STARA. Cuenta con pronunciado escote en V, tiras ajustables y un diseño ceñido que realza la figura con elegancia en talla S.",
     imagenes: [
@@ -168,26 +168,26 @@ const PRODUCTOS_MOCK: ProductoDetalle[] = [
       "/productos/body-stara-brillante-1.jpg",
       "/productos/body-stara-brillante-2.jpg"
     ],
-    tallas: ["S"],
+    tallas: ["M"],
     marca: "STARA"
   },
   { 
     id: 12, 
     nombre: "Shimmer Halter Ring Body", 
-    precio: "$82.900", 
+    precio: "$49.900", 
     categoria: "Mujer",
     descripcion: "Sofisticado body halter con acabado brillante de la marca STARA. Destaca por su detalle de argolla central con pliegues frontales y tiras para anudar al cuello, brindando un estilo moderno y audaz en talla S.",
     imagenes: [
       "/productos/body-stara-argolla.jpg",
       "/productos/body-stara-argolla-1.jpg"
     ],
-    tallas: ["S"],
+    tallas: ["L"],
     marca: "STARA"
   },
   { 
     id: 13, 
     nombre: "Waffle Corset White Body", 
-    precio: "$84.900", 
+    precio: "$49.900", 
     categoria: "Mujer",
     descripcion: "Elegante body en tono blanco marfil de la marca STARA. Confeccionado en tela con textura gofrada (waffle), cuenta con copas estructuradas estilo corsé y tirantes dobles que aportan un look sofisticado y moderno en talla S.",
     imagenes: [
@@ -196,7 +196,7 @@ const PRODUCTOS_MOCK: ProductoDetalle[] = [
       "/productos/body-stara-blanco-2.jpg"
     ],
     tallas: ["S"],
-    marca: "STARA"
+    marca: "SINERGIA"
   }
 ];
 

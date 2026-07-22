@@ -26,7 +26,7 @@ export default function Footer() {
         <div className="flex flex-col gap-4 text-sm text-gray-400">
           <h3 className="text-white uppercase tracking-[0.2em] mb-1 font-bold">Atención</h3>
           <p className="hover:text-white cursor-pointer transition-colors">Instagram: @cova.wear</p>
-          <p className="hover:text-white cursor-pointer transition-colors">WhatsApp: +57 300 000 0000</p>
+          <p className="hover:text-white cursor-pointer transition-colors">WhatsApp: +57 314 211 3396</p>
           <p>Envíos a toda Colombia</p>
         </div>
 
