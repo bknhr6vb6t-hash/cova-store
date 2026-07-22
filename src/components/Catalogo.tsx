@@ -1,137 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-
-type Producto = {
-  id: number;
-  nombre: string;
-  precio: string;
-  categoria: string;
-  subcategoria: string;
-  imagen?: string;
-  marca?: string;
-};
-
-const PRODUCTOS_MOCK: Producto[] = [
-  // MUJER
-  { 
-    id: 1, 
-    nombre: "Distressed Urban Jean", 
-    precio: "$89.900", 
-    categoria: "Mujer", 
-    subcategoria: "Denim",
-    imagen: "/productos/jean-california-distressed.jpg",
-    marca: "CALIFORNIA República"
-  },
-  { 
-    id: 2, 
-    nombre: "Wide Leg Dark Denim", 
-    precio: "$95.900", 
-    categoria: "Mujer", 
-    subcategoria: "Denim",
-    imagen: "/productos/jean-wide-leg.jpg",
-    marca: "Michell Villamizar"
-  },
-  { 
-    id: 3, 
-    nombre: "Wide Leg Premium Blue", 
-    precio: "$92.900", 
-    categoria: "Mujer", 
-    subcategoria: "Denim",
-    imagen: "/productos/jean-zareth.jpg",
-    marca: "ZARETH"
-  },
-  { 
-    id: 4, 
-    nombre: "Wide Leg Authentic", 
-    precio: "$96.900", 
-    categoria: "Mujer", 
-    subcategoria: "Denim",
-    imagen: "/productos/jean-mv.jpg",
-    marca: "Michell Villamizar" 
-  },
-  { 
-    id: 5, 
-    nombre: "High Performance Dark Jean", 
-    precio: "$98.900", 
-    categoria: "Mujer", 
-    subcategoria: "Denim",
-    imagen: "/productos/jean-mv2026.jpg",
-    marca: "Michell Villamizar" 
-  },
-  { 
-    id: 6, 
-    nombre: "High Performance Light Blue", 
-    precio: "$98.900", 
-    categoria: "Mujer", 
-    subcategoria: "Denim",
-    imagen: "/productos/jean-mv-claro.jpg",
-    marca: "Michell Villamizar" 
-  },
-  { 
-    id: 7, 
-    nombre: "Classic Dark Skinny Jean", 
-    precio: "$89.900", 
-    categoria: "Mujer", 
-    subcategoria: "Denim",
-    imagen: "/productos/jean-dhara.jpg",
-    marca: "DHARA" 
-  },
-  { 
-    id: 8, 
-    nombre: "Gold Denim Skinny Fit", 
-    precio: "$98.900", 
-    categoria: "Mujer", 
-    subcategoria: "Denim",
-    imagen: "/productos/jean-mv-skinny.jpg",
-    marca: "Michell Villamizar" 
-  },
-  { 
-    id: 9, 
-    nombre: "Tailored Pink Vest", 
-    precio: "$79.900", 
-    categoria: "Mujer", 
-    subcategoria: "BLUSAS Y CAMISAS",
-    imagen: "/productos/chaleco-stara-rosado.jpg",
-    marca: "STARA" 
-  },
-  { 
-    id: 10, 
-    nombre: "Beige Halter Linen Blouse", 
-    precio: "$74.900", 
-    categoria: "Mujer", 
-    subcategoria: "BLUSAS Y CAMISAS",
-    imagen: "/productos/blusa-stara-beige.jpg",
-    marca: "STARA" 
-  },
-  { 
-    id: 11, 
-    nombre: "Shimmer V-Neck Body", 
-    precio: "$79.900", 
-    categoria: "Mujer", 
-    subcategoria: "BLUSAS Y CAMISAS",
-    imagen: "/productos/body-stara-brillante.jpg",
-    marca: "STARA" 
-  },
-  { 
-    id: 12, 
-    nombre: "Shimmer Halter Ring Body", 
-    precio: "$82.900", 
-    categoria: "Mujer", 
-    subcategoria: "BLUSAS Y CAMISAS",
-    imagen: "/productos/body-stara-argolla.jpg",
-    marca: "STARA" 
-  },
-  { 
-    id: 13, 
-    nombre: "Waffle Corset White Body", 
-    precio: "$84.900", 
-    categoria: "Mujer", 
-    subcategoria: "BLUSAS Y CAMISAS",
-    imagen: "/productos/body-stara-blanco-textura.jpg",
-    marca: "STARA" 
-  },
-];
+import { products } from '@/data/products'; // Importamos directo de la fuente real
 
 const SUBCATEGORIAS = {
   Mujer: ['TODOS', 'DENIM', 'DEPORTIVA', 'BLUSAS Y CAMISAS', 'VESTIDOS', 'ACCESORIOS'],
@@ -147,8 +17,8 @@ export default function Catalogo() {
     setSubcategoriaActiva('TODOS');
   };
 
-  const productosFiltrados = PRODUCTOS_MOCK.filter(producto => {
-    const pasaFiltroPrincipal = categoriaPrincipal === 'TODOS' || producto.categoria.toUpperCase() === categoriaPrincipal;
+  const productosFiltrados = products.filter(producto => {
+    const pasaFiltroPrincipal = categoriaPrincipal === 'TODOS' || producto.category.toUpperCase() === categoriaPrincipal;
     const pasaFiltroSecundario = subcategoriaActiva === 'TODOS' || producto.subcategoria.toUpperCase() === subcategoriaActiva;
     return pasaFiltroPrincipal && pasaFiltroSecundario;
   });
@@ -200,10 +70,10 @@ export default function Catalogo() {
             <Link href={`/product/${producto.id}`} key={producto.id} className="group cursor-pointer block">
               <div className="bg-zinc-900 aspect-[3/4] w-full flex items-center justify-center border border-zinc-800 relative overflow-hidden group-hover:border-zinc-500 transition-all duration-300">
                 
-                {producto.imagen ? (
+                {producto.image ? (
                   <img 
-                    src={producto.imagen} 
-                    alt={producto.nombre} 
+                    src={producto.image} 
+                    alt={producto.name} 
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                 ) : (
@@ -212,7 +82,7 @@ export default function Catalogo() {
                 
                 <div className="absolute top-3 right-3 flex flex-col gap-1 items-end z-10">
                   <span className="bg-zinc-800/80 backdrop-blur-sm text-zinc-300 px-2 py-0.5 text-[9px] uppercase tracking-wider">
-                    {producto.categoria}
+                    {producto.category}
                   </span>
                   <span className="bg-zinc-800/80 backdrop-blur-sm text-zinc-400 px-2 py-0.5 text-[9px] uppercase tracking-wider">
                     {producto.subcategoria}
@@ -226,8 +96,8 @@ export default function Catalogo() {
                     {producto.marca}
                   </span>
                 )}
-                <h3 className="font-medium tracking-wide text-zinc-200 group-hover:text-white transition-colors">{producto.nombre}</h3>
-                <p className="text-zinc-400 mt-1">{producto.precio}</p>
+                <h3 className="font-medium tracking-wide text-zinc-200 group-hover:text-white transition-colors">{producto.name}</h3>
+                <p className="text-zinc-400 mt-1">{producto.priceFormatted}</p>
               </div>
             </Link>
           ))
