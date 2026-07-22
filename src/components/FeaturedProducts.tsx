@@ -36,11 +36,12 @@ export default function FeaturedProducts() {
             </p>
 
             {/* BOTÓN */}
-            <Link href={`/product/${product.id}`}>
-              <button className="mt-6 text-sm border border-white/20 px-4 py-2 hover:bg-white hover:text-black transition">
-                Ver producto
-              </button>
-            </Link>
+            <Link 
+  href={`/product/${product.id}`} 
+  className="mt-6 inline-block text-sm border border-white/20 px-4 py-2 hover:bg-white hover:text-black transition"
+>
+  Ver producto
+</Link>
 
           </div>
 
