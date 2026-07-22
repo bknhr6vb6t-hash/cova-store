@@ -219,7 +219,8 @@ export default function ProductPage() {
   const agregarAlCarrito = () => {
     if (!tallaSeleccionada) return;
 
-    const carritoGuardado = JSON.parse(localStorage.getItem('cova_cart') || '[]');
+    // Sincronizado con la llave 'cart' que lee tu página de carrito
+    const carritoGuardado = JSON.parse(localStorage.getItem('cart') || '[]');
     
     const nuevoItem = {
       id: producto.id,
@@ -231,7 +232,7 @@ export default function ProductPage() {
     };
 
     carritoGuardado.push(nuevoItem);
-    localStorage.setItem('cova_cart', JSON.stringify(carritoGuardado));
+    localStorage.setItem('cart', JSON.stringify(carritoGuardado));
 
     router.push('/cart');
   };
