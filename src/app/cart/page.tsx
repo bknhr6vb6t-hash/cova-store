@@ -12,7 +12,7 @@ export default function CartPage() {
   const total = cart.reduce((acc, item) => acc + item.price, 0);
 
   const handleWhatsAppCheckout = () => {
-    const phoneNumber = "573000000000"; // ¡No olvides poner tu número aquí!
+    const phoneNumber = "573142113396"; // ¡No olvides poner tu número aquí!
     
     let message = "¡Hola COVA! Quiero confirmar este pedido:\n\n";
     

@@ -131,12 +131,6 @@ const PRODUCTOS_MOCK: Producto[] = [
     imagen: "/productos/body-stara-blanco-textura.jpg",
     marca: "STARA" 
   },
-  { id: 14, nombre: "Gorra COVA Essential", precio: "$35.900", categoria: "Mujer", subcategoria: "ACCESORIOS" },
-  
-  // HOMBRE
-  { id: 15, nombre: "Jeans Baggy Washed", precio: "$119.900", categoria: "Hombre", subcategoria: "DENIM" },
-  { id: 16, nombre: "Jogger Deportivo Tech", precio: "$85.900", categoria: "Hombre", subcategoria: "DEPORTIVO" },
-  { id: 17, nombre: "Camisa Oversize Lino", precio: "$95.900", categoria: "Hombre", subcategoria: "CAMISAS" },
 ];
 
 const SUBCATEGORIAS = {
